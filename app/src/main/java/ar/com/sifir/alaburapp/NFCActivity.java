@@ -3,6 +3,7 @@ package ar.com.sifir.alaburapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.EditText;
@@ -73,15 +74,18 @@ public class NFCActivity extends NfcActivity {
             if (isValidId(arr)) {
                 if (isIngressValid == true) {
                     Toast.makeText(this, "Buen trabajo, hasta la proxima!", Toast.LENGTH_LONG).show();
-                    Intent miIntent = new Intent(this, MainActivity.class);
-                    miIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(miIntent);
                 } else {
                     Toast.makeText(this, "Lectura correcta, a laburar!", Toast.LENGTH_LONG).show();
-                    Intent miIntent = new Intent(this, MainActivity.class);
-                    miIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(miIntent);
                 }
+                Handler handler = new Handler();
+
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        Intent miIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        miIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(miIntent);
+                    }
+                }, 500);
             } else {
                 Toast.makeText(this, "Error, chip NFC erroneo", Toast.LENGTH_LONG).show();
             }
