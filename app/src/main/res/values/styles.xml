@@ -8,5 +8,10 @@
         <item name="android:colorForeground">@color/gris</item>
     </style>
 
+    <style name="KeyEditText">
+        <item name="android:textSize">48sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:text">__</item>
+    </style>
 
 </resources>
